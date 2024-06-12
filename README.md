@@ -17,7 +17,12 @@
     <li><strong>Run data quality checks task:</strong> Run checks to ensure data quality.</li>
     <li><strong>Stop execution:</strong> Mark the end of the pipeline.</li>
 </ul>
+<br>
 
+![GRAPH](assets/graph_1.png)
+
+
+<hr><hr>
 <h2>Project Structure</h2>
 <pre>
 ├── LICENSE
@@ -75,74 +80,37 @@
 <h2>Running the Project</h2>
 <p>It is necessary to have an AWS account, Docker, and Docker Compose installed to run the Project.</p>
 
-<h3>Setting AWS</h3>
-<ol>
-    <li>Create a user and attach the policies <em>AmazonRedshiftFullAccess</em> and <em>AmazonS3FullAccess</em> to them. Allow the user to connect to AWS using an access key. We will set up a connection to AWS within Airflow using these credentials.</li>
-    <li>Create a Redshift service role and attach the <em>AmazonS3FullAccess</em> policy to it.</li>
-    <li>Create a Redshift cluster in AWS and associate the Redshift service role to it.</li>
-</ol>
-
-<h3>Running Airflow in Docker</h3>
-<p>Run the command in the Project root directory:</p>
-<pre>$ docker-compose up -d</pre>
-<p>This launches many services. We will shortly describe only Airflow Webserver and Airflow Scheduler.</p>
-
-<h4>Airflow WebServer</h4>
-<p>Can be accessed in your web browser at <a href="http://localhost:8080">http://localhost:8080</a>. To log in, use <em>airflow</em> as username and password. From the web UI one can execute the DAGs, add connections to AWS and to Redshift, set variables, and more.</p>
-<p><strong>Important:</strong></p>
+<h2>Running the Project</h2>
+<p>To run the project, ensure you have an AWS account, Docker, and Docker Compose installed. Then:</p>
 <ul>
-    <li>A connection to AWS must be set using <em>aws_credentials</em> as the connection ID.</li>
-    <li>A connection to the Redshift cluster must be set using <em>redshift</em> as the connection ID.</li>
+    <li>Set up an IAM user and a Redshift cluster in AWS.</li>
+    <li>Run <code>docker-compose up -d</code> in the project root directory.</li>
+    <li>Access the Airflow UI at <a href="http://localhost:8080">http://localhost:8080</a> (username: airflow, password: airflow).</li>
+    <li>Configure connections in Airflow for AWS (aws_credentials) and Redshift (redshift).</li>
+    <li>Trigger the <em>final_project</em> DAG from the Airflow UI.</li>
 </ul>
-
-<h4>Airflow Scheduler</h4>
-<p>The scheduler monitors all tasks and DAGs, then triggers the task instances once their dependencies are complete.</p>
-
-<h2>The Airflow UI</h2>
-<p>The Airflow UI can be accessed at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
-<p><strong>Username:</strong> airflow</p>
-<p><strong>Password:</strong> airflow</p>
-
-<h3>Connect Airflow to AWS</h3>
-<p>First, we need to pass to Airflow the AWS credentials and the Redshift connection data.</p>
-
-<h4>AWS Credentials</h4>
-<p>Click on the <em>Admin</em> tab and select <em>Connections</em>.</p>
-<p>Under Connections, select <em>Create</em>.</p>
-<p>On the create connection page, enter the following values:</p>
-<ul>
-    <li><strong>Connection Id:</strong> aws_credentials</li>
-    <li><strong>Connection Type:</strong> Amazon Web Services</li>
-    <li><strong>AWS Access Key ID:</strong> Access key ID from the IAM User credentials</li>
-    <li><strong>AWS Secret Access Key:</strong> Secret access key from the IAM User credentials</li>
-</ul>
-<p>Once you've entered these values, select <em>Save and Add Another</em>.</p>
-
-<h4>Redshift</h4>
-<p>On the create connection page, enter the following values:</p>
-<ul>
-    <li><strong>Connection Id:</strong> redshift</li>
-    <li><strong>Connection Type:</strong> Amazon Redshift</li>
-    <li><strong>Host:</strong> Redshift cluster endpoint</li>
-    <li><strong>Database:</strong> dev</li>
-    <li><strong>User:</strong> awsuser</li>
-    <li><strong>Password:</strong> Enter the password you created when launching your Redshift cluster</li>
-    <li><strong>Port:</strong> 5439</li>
-</ul>
-<p>Once you've entered these values, select <em>Save</em>.</p>
 
 <h3>Run the DAG</h3>
 <p>Click on the <em>final_project</em> and then trigger the DAG by clicking on the play button.</p>
 <p>The whole pipeline should take less than 5 minutes to complete.</p>
 
-![Descripción de la imagen](ruta_de_la_imagen)
+Before Running the Dag
+
+![Before Running 1](assets/before_execution_1.png)
 
 
-![Descripción de la imagen](ruta_de_la_imagen)
+![Before Running 2](assets/before_execution_2.png)
 
 
+DAG Running
 
-![Descripción de la imagen](ruta_de_la_imagen)
+![DAG Running](assets/running_1.png)
+
+
+DAG Success!
+
+![DAG Success](assets/success_running_1.png)
+
 
 
 
