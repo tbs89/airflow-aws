@@ -23,7 +23,6 @@
 ├── LICENSE
 ├── README.md 
 ├── create_tables.sql
-├── data_to_s3.py
 ├── assets
 │   ├── screenshots
 ├── dags
@@ -31,6 +30,7 @@
 ├── docker-compose.yaml
 └── plugins
     ├── __init__.py
+    ├── data_to_s3.py
     ├── helpers
     │   ├── __init__.py
     │   └── sql_queries.py
@@ -48,9 +48,6 @@
 <h3>create_tables.sql</h3>
 <p>SQL script that can be used to create all the required tables in Redshift.</p>
 
-<h3>data_to_s3.py</h3>
-<p>Python script that can be used to download the data from the Udacity's bucket to our bucket </p>
-
 <h3>The dags/ directory</h3>
 <ul>
     <li><strong>main.py:</strong> This is the main DAG where all the steps of the ETL are performed.</li>
@@ -59,6 +56,9 @@
 
 <h3>The plugins/ directory</h3>
 <p>This directory contains the <em>operators</em> and <em>helpers</em> subdirectories.</p>
+
+<h4>data_to_s3.py</h4>
+<p>Python script that can be used to download the data from the Udacity's bucket to our bucket </p>
 
 <h4>plugins/operators</h4>
 <p>Subpackage in which the reusable custom operators are defined.</p>
