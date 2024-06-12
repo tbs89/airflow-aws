@@ -21,8 +21,9 @@
 <h2>Project Structure</h2>
 <pre>
 ├── LICENSE
-├── README.md
+├── README.md 
 ├── create_tables.sql
+├── data_to_s3.py
 ├── assets
 │   ├── screenshots
 ├── dags
@@ -45,7 +46,10 @@
 <p>Runs Airflow locally using Docker.</p>
 
 <h3>create_tables.sql</h3>
-<p>SQL script that can be used to create all the required tables in Redshift.
+<p>SQL script that can be used to create all the required tables in Redshift.</p>
+
+<h3>data_to_s3.py</h3>
+<p>Python script that can be used to download the data from the Udacity's bucket to our bucket </p>
 
 <h3>The dags/ directory</h3>
 <ul>
