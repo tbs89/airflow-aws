@@ -60,7 +60,7 @@
 </ul>
 
 <h3>The plugins/ directory</h3>
-<p>This directory contains the <em>operators</em> and <em>helpers</em> subdirectories.</p>
+<p>This directory contains the <em>operators</em> and <em>helpers</em> subdirectories and the python script to download the data to our bucket.</p>
 
 <h4>data_to_s3.py</h4>
 <p>Python script that can be used to download the data from the Udacity's bucket to our bucket </p>
@@ -76,9 +76,6 @@
 
 <h4>plugins/helpers</h4>
 <p><em>sql_queries.py</em>: Defines the insert queries and the create table queries that are used by the <em>LoadDimensionOperator</em> and the <em>CreateTableOperator</em>, respectively.</p>
-
-<h2>Running the Project</h2>
-<p>It is necessary to have an AWS account, Docker, and Docker Compose installed to run the Project.</p>
 
 <h2>Running the Project</h2>
 <p>To run the project, ensure you have an AWS account, Docker, and Docker Compose installed. Then:</p>
