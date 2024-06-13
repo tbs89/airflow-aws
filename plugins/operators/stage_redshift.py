@@ -6,6 +6,8 @@ from airflow.utils.decorators import apply_defaults
 class StageToRedshiftOperator(BaseOperator):
     ui_color = '#358140'
 
+    template_fields = ("s3_key",) 
+
     copy_sql = """
         COPY {}
         FROM '{}'
@@ -37,7 +39,7 @@ class StageToRedshiftOperator(BaseOperator):
         aws_connection = metastoreBackend.get_connection(self.aws_credentials_id)
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
 
-        self.log.info("Removing rows in the destination Redshift table")
+        self.log.info("Deleting data in the destination Redshift table")
         redshift.run("TRUNCATE FROM {}".format(self.table))
 
         self.log.info("Copying data from S3 to Redshift")
@@ -52,6 +54,7 @@ class StageToRedshiftOperator(BaseOperator):
             self.data_format
         )
         redshift.run(formatted_sql)
+
 
 
 
