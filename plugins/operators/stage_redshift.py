@@ -37,8 +37,8 @@ class StageToRedshiftOperator(BaseOperator):
         aws_connection = metastoreBackend.get_connection(self.aws_credentials_id)
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
 
-        self.log.info("Deleting data in the destination Redshift table")
-        redshift.run("DELETE FROM {}".format(self.table))
+        self.log.info("Removing rows in the destination Redshift table")
+        redshift.run("TRUNCATE FROM {}".format(self.table))
 
         self.log.info("Copying data from S3 to Redshift")
         rendered_key = self.s3_key.format(**context)
